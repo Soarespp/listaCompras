@@ -1,17 +1,16 @@
-import { Flex } from "@react-native-material/core";
 import { useController, useForm } from "react-hook-form";
 import { Button, Text, TextInput, View } from "react-native";
-import { useListaComprasContext } from "../Context";
+import { useListaComprasContext } from "../../Components/Context";
 
 const ContainerCadastroItem = () => {
-  const { changeCadOpen, addItensListaCompras } = useListaComprasContext();
+  const { changeCadOpen, addItemListaCompras } = useListaComprasContext();
   const { control, handleSubmit, reset } = useForm({
     defaultValue: { name: "", qt: 0 },
   });
 
   const handleSave = (data) => {
     if (data?.name && data?.qt) {
-      addItensListaCompras(data);
+      addItemListaCompras(data);
       reset();
       changeCadOpen();
     }

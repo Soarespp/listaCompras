@@ -10,6 +10,8 @@ const defaultValues = {
 export const ListaComprasProvider = ({ children }) => {
   const [listaCompras, setListaCompras] = useState(mockListaCompras?.itens);
   const [dadosLista, setDadosLista] = useState(mockListaCompras);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [openImportOptions, setOpenImportptions] = useState({ lista: false });
 
   const [cadOpen, setCadOpen] = useState(false);
 
@@ -17,7 +19,14 @@ export const ListaComprasProvider = ({ children }) => {
   const changeDadosLista = (value) => setDadosLista(value);
   const changeCadOpen = () => setCadOpen((oldvalue) => !oldvalue);
 
-  const addItensListaCompras = async (value) => {
+  const atualizarDadosLista = async (dados) => {
+    const jsonDadosCache = JSON.stringify(dados);
+    await AsyncStorage.setItem("listaDados", jsonDadosCache);
+
+    setListaCompras(dados);
+  };
+
+  const addItemListaCompras = (value) => {
     let maxValue = listaCompras.sort((a, b) => b.id - a.id)[0]?.id || 0;
     maxValue = maxValue + 1;
 
@@ -26,14 +35,20 @@ export const ListaComprasProvider = ({ children }) => {
       { ...defaultValues["evento"], ...value, id: maxValue },
     ];
 
-    const jsonDadosCache = JSON.stringify(dadoCache);
+    atualizarDadosLista(dadoCache);
+  };
 
-    await AsyncStorage.setItem("listaDados", jsonDadosCache);
+  const addItensListaCompras = (dadosUpdate) => {
+    let maxValue = listaCompras.sort((a, b) => b.id - a.id)[0]?.id || 0;
 
-    setListaCompras((oldValues) => [
-      ...oldValues,
-      { ...defaultValues["evento"], ...value, id: maxValue },
-    ]);
+    var dadosCache = dadosUpdate.map((item) => {
+      if (!item?.id) {
+        maxValue = maxValue + 1;
+        return { ...item, id: maxValue, comprado: false, falta: false };
+      }
+    });
+
+    atualizarDadosLista([...listaCompras, ...dadosCache]);
   };
 
   const onChangeItemValue = (value, name, id) => {
@@ -45,10 +60,6 @@ export const ListaComprasProvider = ({ children }) => {
     ]);
   };
 
-  const saveJsonData = (value) => {
-    console.log("saveJsonData");
-  };
-
   const getDadosStorage = async () => {
     const jsonValue = await AsyncStorage.getItem("listaDados");
     if (jsonValue != null) {
@@ -57,19 +68,45 @@ export const ListaComprasProvider = ({ children }) => {
     }
   };
 
+  const changeMenuOpen = () => setMenuOpen((oldValue) => !oldValue);
+
+  const changeOpenImportOptions = (opcao) => {
+    setOpenImportptions((oldValue) => ({
+      ...oldValue,
+      [opcao]: !oldValue[opcao],
+    }));
+  };
+
+  const clearAllLista = async () => {
+    setListaCompras([]);
+    await AsyncStorage.removeItem("listaDados");
+  };
+
+  const deleteItemListaCompas = (id) => {
+    const newLista = listaCompras.filter((item) => item.id !== id);
+
+    atualizarDadosLista(newLista);
+  };
+
   return (
     <ListaComprasContext.Provider
       value={{
         listaCompras,
         cadOpen,
         dadosLista,
+        menuOpen,
+        openImportOptions,
         changeListaCompras,
         addItensListaCompras,
         onChangeItemValue,
         changeCadOpen,
-        saveJsonData,
         changeDadosLista,
         getDadosStorage,
+        changeMenuOpen,
+        changeOpenImportOptions,
+        clearAllLista,
+        deleteItemListaCompas,
+        addItemListaCompras,
       }}
     >
       {children}
