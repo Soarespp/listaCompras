@@ -16,13 +16,15 @@ const ImportItens = () => {
       arrayItens.map((itens) => {
         var ArrayItem = itens.split(":");
         if (ArrayItem.length == 2) {
-          var teste1 = { name: ArrayItem[0], qt: ArrayItem[1] };
-          if (teste1.name.length > 0 && teste1.qt.length) {
-            dadosUpdate = [...dadosUpdate, teste1];
+          let name = ArrayItem[0].trim();
+          let qt = ArrayItem[1].trim();
+          console.log("geradorJson", name, qt, !!Number(qt));
+          if (name.length > 0 && qt.length && !!Number(qt)) {
+            dadosUpdate = [...dadosUpdate, { name, qt }];
           }
         }
       });
-      addItensListaCompras(dadosUpdate);
+      dadosUpdate.length > 0 && addItensListaCompras(dadosUpdate);
     }
   };
 

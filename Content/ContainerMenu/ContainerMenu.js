@@ -3,7 +3,8 @@ import Icon from "@expo/vector-icons/MaterialCommunityIcons";
 import { useListaComprasContext } from "../../Components/Context";
 
 const ContainerMenu = () => {
-  const { changeOpenImportOptions, clearAllLista } = useListaComprasContext();
+  const { changeOpenImportOptions, clearAllLista, changeMenuOpen } =
+    useListaComprasContext();
 
   return (
     <Stack
@@ -24,7 +25,17 @@ const ContainerMenu = () => {
         size="mini"
         color="#009093"
         tintColor="yellow"
-        onPress={() => clearAllLista("lista")}
+        onPress={() => {
+          clearAllLista("lista");
+          changeMenuOpen();
+        }}
+      />
+      <IconButton
+        icon={(props) => <Icon name="history" {...props} />}
+        size="mini"
+        color="#009093"
+        tintColor="yellow"
+        // onPress={() => clearAllLista("lista")}
       />
     </Stack>
   );
