@@ -1,16 +1,14 @@
 import React from "react";
 import { StatusBar } from "expo-status-bar";
 import { View, StyleSheet } from "react-native";
-import ContainerListaCompras from "./Content/ContainerListaCompras/ContainerListaCompras";
 import { ListaComprasProvider } from "./Components/Context/ListaComprasProvider";
-import Header from "./Components/Header/Header";
+import ListaMercado from "./Components/ListaMercado";
 
 export default function App() {
   return (
     <View>
       <ListaComprasProvider>
-        <Header />
-        <ContainerListaCompras />
+        <ListaMercado />
         <StatusBar style="auto" />
       </ListaComprasProvider>
     </View>

@@ -1,18 +1,15 @@
 import React, { useState } from "react";
 import { AsyncStorage } from "react-native";
 import { mockListaCompras } from "../../mocks/mockListaCompras";
+import { defaultValues, typesPages, typesTab } from "../../utils/constantes";
 import { ListaComprasContext } from "./ListaComprasContext";
-
-const defaultValues = {
-  evento: { id: 0, name: "", comprado: false, falta: false, qt: 0 },
-};
 
 export const ListaComprasProvider = ({ children }) => {
   const [listaCompras, setListaCompras] = useState(mockListaCompras?.itens);
   const [dadosLista, setDadosLista] = useState(mockListaCompras);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [openImportOptions, setOpenImportptions] = useState({ lista: false });
-
+  const [tabPage, setTabPage] = useState(typesPages.pageHome);
+  const [tabSelected, setTabSelected] = useState(typesTab.tabLista);
   const [cadOpen, setCadOpen] = useState(false);
 
   const changeListaCompras = (value) => setListaCompras(value);
@@ -70,13 +67,6 @@ export const ListaComprasProvider = ({ children }) => {
 
   const changeMenuOpen = () => setMenuOpen((oldValue) => !oldValue);
 
-  const changeOpenImportOptions = (opcao) => {
-    setOpenImportptions((oldValue) => ({
-      ...oldValue,
-      [opcao]: !oldValue[opcao],
-    }));
-  };
-
   const clearAllLista = async () => {
     setListaCompras([]);
     await AsyncStorage.removeItem("listaDados");
@@ -95,7 +85,8 @@ export const ListaComprasProvider = ({ children }) => {
         cadOpen,
         dadosLista,
         menuOpen,
-        openImportOptions,
+        tabPage,
+        tabSelected,
         changeListaCompras,
         addItensListaCompras,
         onChangeItemValue,
@@ -103,10 +94,11 @@ export const ListaComprasProvider = ({ children }) => {
         changeDadosLista,
         getDadosStorage,
         changeMenuOpen,
-        changeOpenImportOptions,
         clearAllLista,
         deleteItemListaCompas,
         addItemListaCompras,
+        setTabSelected,
+        setTabPage,
       }}
     >
       {children}

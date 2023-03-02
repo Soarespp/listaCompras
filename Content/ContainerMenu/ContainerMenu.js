@@ -1,9 +1,10 @@
 import { IconButton, Stack } from "@react-native-material/core";
 import Icon from "@expo/vector-icons/MaterialCommunityIcons";
 import { useListaComprasContext } from "../../Components/Context";
+import { typesPages } from "../../utils/constantes";
 
 const ContainerMenu = () => {
-  const { changeOpenImportOptions, clearAllLista, changeMenuOpen } =
+  const { tabPage, clearAllLista, changeMenuOpen, setTabPage } =
     useListaComprasContext();
 
   return (
@@ -11,20 +12,33 @@ const ContainerMenu = () => {
       center
       m={4}
       spacing={6}
-      direction="row-reverse"
+      direction="row"
       style={{ backgroundColor: "#e2e2e2" }}
     >
+      <IconButton
+        icon={(props) => <Icon name="home-outline" {...props} />}
+        color="#009093"
+        tintColor="yellow"
+        onPress={() => {
+          setTabPage(typesPages.pageHome);
+          changeMenuOpen();
+        }}
+      />
       <IconButton
         icon={(props) => <Icon name="file-download-outline" {...props} />}
         color="#009093"
         tintColor="yellow"
-        onPress={() => changeOpenImportOptions("lista")}
+        onPress={() => {
+          setTabPage(typesPages.pageImports);
+          changeMenuOpen();
+        }}
       />
       <IconButton
-        icon={(props) => <Icon name="trash-can" {...props} />}
+        icon={(props) => <Icon name="trash-can-outline" {...props} />}
         size="mini"
         color="#009093"
         tintColor="yellow"
+        disabled={tabPage !== typesPages.pageHome}
         onPress={() => {
           clearAllLista("lista");
           changeMenuOpen();
@@ -35,7 +49,10 @@ const ContainerMenu = () => {
         size="mini"
         color="#009093"
         tintColor="yellow"
-        // onPress={() => clearAllLista("lista")}
+        onPress={() => {
+          setTabPage(typesPages.pageHistorico);
+          changeMenuOpen();
+        }}
       />
     </Stack>
   );

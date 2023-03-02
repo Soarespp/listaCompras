@@ -6,20 +6,16 @@ import ContainerCadastroItem from "../ContainerCadastroItem/ContainerCadastroIte
 import { useListaComprasContext } from "../../Components/Context";
 import Footer from "../../Components/Footer/Footer";
 import ListaCompras from "../../Components/ListaCompras/ListaCompras";
-import ContainerMenu from "../ContainerMenu";
-import ImportItens from "../../Components/ImportItens";
-
-const typesTab = { tabLista: "tabLista", tabComprados: "tabCompras" };
+import { typesTab } from "../../utils/constantes";
 
 const ContainerListaCompras = () => {
   const {
     listaCompras,
     cadOpen,
     getDadosStorage,
-    menuOpen,
-    openImportOptions,
+    setTabSelected,
+    tabSelected,
   } = useListaComprasContext();
-  const [tabSelected, setTabSelected] = useState(typesTab.tabLista);
 
   useEffect(() => {
     getDadosStorage();
@@ -27,12 +23,10 @@ const ContainerListaCompras = () => {
 
   return (
     <ScrollView divider>
-      {openImportOptions.lista && <ImportItens />}
       {cadOpen ? (
         <ContainerCadastroItem />
       ) : (
         <Stack>
-          {menuOpen && <ContainerMenu />}
           <View>
             {tabSelected === typesTab.tabLista ? (
               <ListaCompras

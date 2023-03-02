@@ -4,8 +4,9 @@ import { Stack, IconButton } from "@react-native-material/core";
 import Icon from "@expo/vector-icons/MaterialCommunityIcons";
 
 import { TabItem } from "./Footer.style";
+import { typesTab } from "../../utils/constantes";
 
-const Footer = ({ tabSelected, onChangeTab, typesTab }) => {
+const Footer = ({ tabSelected, onChangeTab }) => {
   return (
     <View
       style={{
@@ -22,11 +23,11 @@ const Footer = ({ tabSelected, onChangeTab, typesTab }) => {
           />
         </Stack>
       </TabItem>
-      <TabItem tabSelected={tabSelected} tabTitle={typesTab.tabComprados}>
+      <TabItem tabSelected={tabSelected} tabTitle={typesTab.tabCarrinho}>
         <Stack center>
           <IconButton
             icon={(props) => <Icon name="cart" {...props} />}
-            onPress={() => onChangeTab(typesTab.tabComprados)}
+            onPress={() => onChangeTab(typesTab.tabCarrinho)}
           />
         </Stack>
       </TabItem>

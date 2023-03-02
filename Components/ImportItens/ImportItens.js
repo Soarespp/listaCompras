@@ -1,13 +1,13 @@
 import { Button, Stack, TextInput } from "@react-native-material/core";
 import { useState } from "react";
-import { Text, View } from "react-native";
+import { View } from "react-native";
+import { typesPages } from "../../utils/constantes";
 import { useListaComprasContext } from "../Context";
 
 const ImportItens = () => {
   const [value, setValue] = useState("");
 
-  const { changeOpenImportOptions, addItensListaCompras, changeMenuOpen } =
-    useListaComprasContext();
+  const { setTabPage, addItensListaCompras } = useListaComprasContext();
 
   const geradorJSON = () => {
     var arrayItens = value.split("\n");
@@ -18,7 +18,7 @@ const ImportItens = () => {
         if (ArrayItem.length == 2) {
           let name = ArrayItem[0].trim();
           let qt = ArrayItem[1].trim();
-          console.log("geradorJson", name, qt, !!Number(qt));
+
           if (name.length > 0 && qt.length && !!Number(qt)) {
             dadosUpdate = [...dadosUpdate, { name, qt }];
           }
@@ -29,15 +29,7 @@ const ImportItens = () => {
   };
 
   return (
-    <View
-      style={{
-        width: "100%",
-        height: "100%",
-        backgroundColor: "grey",
-        position: "absolute",
-        zIndex: 10,
-      }}
-    >
+    <View>
       <Stack direction="column">
         <TextInput
           label="Impordar lista"
@@ -52,8 +44,7 @@ const ImportItens = () => {
           color="#009093"
           onPress={() => {
             geradorJSON();
-            changeOpenImportOptions("lista");
-            changeMenuOpen();
+            setTabPage(typesPages.pageHome);
           }}
         />
       </Stack>
