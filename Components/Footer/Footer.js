@@ -26,7 +26,7 @@ const Footer = ({ tabSelected, onChangeTab }) => {
       <TabItem tabSelected={tabSelected} tabTitle={typesTab.tabCarrinho}>
         <Stack center>
           <IconButton
-            icon={(props) => <Icon name="cart" {...props} />}
+            icon={(props) => <Icon name="cart-variant" {...props} />}
             onPress={() => onChangeTab(typesTab.tabCarrinho)}
           />
         </Stack>

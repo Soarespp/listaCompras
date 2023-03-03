@@ -7,7 +7,8 @@ import { useListaComprasContext } from "../Context";
 const ImportItens = () => {
   const [value, setValue] = useState("");
 
-  const { setTabPage, addItensListaCompras } = useListaComprasContext();
+  const { setTabPage, addItensListaCompras, setTabSelected } =
+    useListaComprasContext();
 
   const geradorJSON = () => {
     var arrayItens = value.split("\n");
@@ -44,6 +45,7 @@ const ImportItens = () => {
           color="#009093"
           onPress={() => {
             geradorJSON();
+            setTabSelected(typesTab.tabLista);
             setTabPage(typesPages.pageHome);
           }}
         />

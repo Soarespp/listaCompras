@@ -1,10 +1,11 @@
 import { IconButton, Stack } from "@react-native-material/core";
 import Icon from "@expo/vector-icons/MaterialCommunityIcons";
 import { useListaComprasContext } from "../../Components/Context";
-import { typesPages } from "../../utils/constantes";
+import { typesPages, typesTab } from "../../utils/constantes";
+import { Button } from "react-native";
 
 const ContainerMenu = () => {
-  const { tabPage, clearAllLista, changeMenuOpen, setTabPage } =
+  const { tabPage, clearAllLista, changeMenuOpen, setTabPage, setTabSelected } =
     useListaComprasContext();
 
   return (
@@ -21,6 +22,7 @@ const ContainerMenu = () => {
         tintColor="yellow"
         onPress={() => {
           setTabPage(typesPages.pageHome);
+          setTabSelected(typesTab.tabLista);
           changeMenuOpen();
         }}
       />
@@ -51,6 +53,16 @@ const ContainerMenu = () => {
         tintColor="yellow"
         onPress={() => {
           setTabPage(typesPages.pageHistorico);
+          changeMenuOpen();
+        }}
+      />
+      <IconButton
+        icon={(props) => <Icon name="information-outline" {...props} />}
+        size="mini"
+        color="#009093"
+        tintColor="yellow"
+        onPress={() => {
+          setTabPage(typesPages.pageInformacoes);
           changeMenuOpen();
         }}
       />

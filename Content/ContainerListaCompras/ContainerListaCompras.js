@@ -1,6 +1,6 @@
 import { Stack, TextInput } from "@react-native-material/core";
 
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { ScrollView, View } from "react-native";
 import ContainerCadastroItem from "../ContainerCadastroItem/ContainerCadastroItem";
 import { useListaComprasContext } from "../../Components/Context";
@@ -18,7 +18,7 @@ const ContainerListaCompras = () => {
   } = useListaComprasContext();
 
   useEffect(() => {
-    getDadosStorage();
+    (!listaCompras || listaCompras.length === 0) && getDadosStorage();
   }, []);
 
   return (
@@ -31,16 +31,18 @@ const ContainerListaCompras = () => {
             {tabSelected === typesTab.tabLista ? (
               <ListaCompras
                 title="Aguardando compra"
-                lista={listaCompras.filter(
-                  (itens) => itens.comprado === false && itens.falta === false
-                )}
+                lista={listaCompras
+                  .filter((itemLista) => itemLista.finalizada === false)
+                  .shift()
+                  ?.itens.filter((itens) => !itens.comprado && !itens.falta)}
               />
             ) : (
               <ListaCompras
-                title="Lista já comprados"
-                lista={listaCompras.filter(
-                  (itens) => itens.comprado || itens.falta
-                )}
+                title="Carrinho"
+                lista={listaCompras
+                  .filter((itemLista) => itemLista.finalizada === false)
+                  .shift()
+                  ?.itens.filter((itens) => itens.comprado || itens.falta)}
               />
             )}
           </View>

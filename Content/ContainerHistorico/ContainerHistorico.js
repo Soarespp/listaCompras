@@ -1,9 +1,71 @@
+import { IconButton } from "@react-native-material/core";
 import { Text, View } from "react-native";
+import { useListaComprasContext } from "../../Components/Context";
+import Icon from "@expo/vector-icons/MaterialCommunityIcons";
 
 const ContainerHistorico = () => {
+  const { listaCompras, excluirListaMercado, changeListaMercadoFinalizada } =
+    useListaComprasContext();
+
   return (
     <View>
-      <Text>Historico</Text>
+      <View
+        style={{
+          backgroundColor: "#e2e2e2",
+          margin: 10,
+          height: "100%",
+          maxHeight: 600,
+        }}
+      >
+        {listaCompras
+          ?.filter((lista) => lista.finalizada)
+          .map((lista) => (
+            <View
+              style={{
+                margin: 3,
+                backgroundColor: "#fff",
+                flexDirection: "row",
+                justifyContent: "flex-end",
+              }}
+            >
+              <Text
+                style={{
+                  fontSize: 15,
+                  paddingTop: 12,
+                  borderCurve: 3,
+                }}
+              >{`Data: ${new Date(
+                lista.dataLista
+              ).toLocaleDateString()}`}</Text>
+              <Text
+                style={{
+                  fontSize: 15,
+                  paddingTop: 12,
+                  paddingLeft: 6,
+                  borderCurve: 3,
+                }}
+              >{`Valor: ${lista?.value || 0}`}</Text>
+              <Text
+                style={{
+                  fontSize: 15,
+                  paddingTop: 12,
+                  paddingLeft: 6,
+                  borderCurve: 3,
+                }}
+              >{`Itens: ${lista.itens.length}`}</Text>
+              <View style={{ flexDirection: "row", paddingLeft: 6 }}>
+                <IconButton
+                  icon={(props) => <Icon name="reload-alert" {...props} />}
+                  onPress={() => changeListaMercadoFinalizada(lista.dataLista)}
+                />
+                <IconButton
+                  icon={(props) => <Icon name="trash-can-outline" {...props} />}
+                  onPress={() => excluirListaMercado(lista.dataLista)}
+                />
+              </View>
+            </View>
+          ))}
+      </View>
     </View>
   );
 };
