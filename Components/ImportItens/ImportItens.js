@@ -1,7 +1,7 @@
 import { Button, Stack, TextInput } from "@react-native-material/core";
 import { useState } from "react";
 import { View } from "react-native";
-import { typesPages } from "../../utils/constantes";
+import { typesPages, typesTab } from "../../utils/constantes";
 import { useListaComprasContext } from "../Context";
 
 const ImportItens = () => {
