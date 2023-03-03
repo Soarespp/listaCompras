@@ -16,15 +16,13 @@ const ContainerInfo = () => {
             Lista Mercado v. 1.0.2
           </Text>
           <Text style={{ fontSize: 16, paddingTop: 20 }}>
-            E um app para ajudar na compra de mercado tendo a função de guardar
-            historico e recuperar. Pode-se informar no final da compra o valor
-            para comparações futuras. Tem a opção de importar varios intes de
-            uma vez seguindo por quebra de linha e para pegar a quantidade
-            separar por ":"
+            E um app para ajudar na compra de mercado, tendo a função de guardar
+            histórico e recupera-lo. Pode-se informar no final da compra o valor
+            para comparações futuras.
           </Text>
           <Text style={{ fontSize: 16, paddingTop: 10 }}>
-            Tem a opção de importar varios intes de uma vez seguindo por quebra
-            de linha e para pegar a quantidade separar por ":"
+            Tem a opção de importar vários itens de uma vez, seguindo por quebra
+            de linha e para pegar a quantidade separar por ":".
           </Text>
           <Text style={{ fontSize: 16, paddingTop: 100 }}>
             Produção do grupo Pepeu's tec.

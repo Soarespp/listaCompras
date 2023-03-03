@@ -33,7 +33,7 @@ const ImportItens = () => {
     <View>
       <Stack direction="column">
         <TextInput
-          label="Impordar lista"
+          label="Importa lista"
           multiline
           placeholder="lista de compras separada por ;"
           inputContainerStyle={{ height: 200 }}

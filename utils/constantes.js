@@ -12,6 +12,16 @@ export const typesPages = {
   pageInformacoes: "informacoes",
 };
 
+export const typesCategoriasProduto = [
+  { id: "f", title: "Frios", color: "#fff" },
+  { id: "v", title: "Verduras", color: "#fff" },
+  { id: "l", title: "Limpeza", color: "#fff" },
+  { id: "u", title: "Utensílios", color: "#fff" },
+  { id: "m", title: "Mantimentos", color: "#fff" },
+  { id: "b", title: "bebida", color: "#fff" },
+  { id: "o", title: "outros", color: "#fff" },
+];
+
 export const defaultValues = {
   id: 0,
   name: "",

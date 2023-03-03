@@ -5,8 +5,14 @@ import { typesPages, typesTab } from "../../utils/constantes";
 import { Button } from "react-native";
 
 const ContainerMenu = () => {
-  const { tabPage, clearAllLista, changeMenuOpen, setTabPage, setTabSelected } =
-    useListaComprasContext();
+  const {
+    tabPage,
+    clearAllLista,
+    changeMenuOpen,
+    setTabPage,
+    setTabSelected,
+    changeCadOpen,
+  } = useListaComprasContext();
 
   return (
     <Stack
@@ -21,6 +27,7 @@ const ContainerMenu = () => {
         color="#009093"
         tintColor="yellow"
         onPress={() => {
+          changeCadOpen(false);
           setTabPage(typesPages.pageHome);
           setTabSelected(typesTab.tabLista);
           changeMenuOpen();

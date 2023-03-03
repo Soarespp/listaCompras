@@ -16,9 +16,62 @@ const MoreOptions = ({ onchangeOpen }) => {
         user: "Pedro Soares",
         finalizada: true,
         itens: [
-          { id: 1, name: "Café 1", comprado: false, falta: false, qt: 1 },
-          { id: 2, name: "Café 2", comprado: false, falta: false, qt: 11 },
-          { id: 3, name: "Café 3", comprado: false, falta: true, qt: 11 },
+          {
+            id: 1,
+            name: "Frios",
+            comprado: false,
+            falta: false,
+            qt: 1,
+            categoria: "f",
+          },
+          {
+            id: 2,
+            name: "Verduras",
+            comprado: false,
+            falta: false,
+            qt: 11,
+            categoria: "v",
+          },
+          {
+            id: 3,
+            name: "Limpeza",
+            comprado: false,
+            falta: true,
+            qt: 11,
+            categoria: "l",
+          },
+          {
+            id: 1,
+            name: "Utensílios",
+            comprado: true,
+            falta: false,
+            qt: 1,
+            categoria: "u",
+          },
+          {
+            id: 2,
+            name: "Mantimentos",
+            comprado: false,
+            falta: false,
+            qt: 11,
+            categoria: "m",
+          },
+          {
+            id: 3,
+            name: "Bebidas",
+            comprado: false,
+            falta: true,
+            qt: 11,
+            categoria: "b",
+          },
+          {
+            id: 3,
+            name: "Outros",
+            comprado: false,
+            falta: false,
+            qt: 11,
+            categoria: "o",
+          },
         ],
       },
     ];
@@ -65,13 +118,13 @@ const MoreOptions = ({ onchangeOpen }) => {
             onchangeOpen();
           }}
         />
-        {/* <IconButton
+        <IconButton
           icon={(props) => <Icon name="star-outline" {...props} />}
           onPress={() => {
             testeAtualiza();
             onchangeOpen();
           }}
-        /> */}
+        />
       </View>
     </View>
   );

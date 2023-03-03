@@ -4,6 +4,7 @@ import { mockListaCompras } from "../../mocks/mockListaCompras";
 import {
   defaultListaCompra,
   defaultValues,
+  typesCategoriasProduto,
   typesPages,
   typesTab,
 } from "../../utils/constantes";
@@ -18,7 +19,13 @@ export const ListaComprasProvider = ({ children }) => {
   const [cadOpen, setCadOpen] = useState(false);
 
   const changeDadosLista = (value) => setDadosLista(value);
-  const changeCadOpen = () => setCadOpen((oldvalue) => !oldvalue);
+  const changeCadOpen = (valueParams) => {
+    if (valueParams !== undefined) {
+      setCadOpen(valueParams);
+      return;
+    }
+    setCadOpen((oldvalue) => !oldvalue);
+  };
 
   const atualizarDadosLista = async (dados) => {
     setListaCompras(dados);
@@ -74,6 +81,9 @@ export const ListaComprasProvider = ({ children }) => {
         const testeNovo = {
           ...item,
           id: maxValue,
+          categoria:
+            item.categoria ||
+            typesCategoriasProduto.find((item) => item.id === "o").id,
           comprado: false,
           falta: false,
         };
