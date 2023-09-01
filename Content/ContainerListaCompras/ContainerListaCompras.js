@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { ScrollView, StyleSheet, View, SafeAreaView } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { useListaComprasContext } from "../../Components/Context";
 import ListaCompras from "../../Components/ListaCompras/ListaCompras";
 import { typesTab } from "../../utils/constantes";
@@ -37,7 +37,10 @@ const ContainerListaCompras = () => {
 };
 
 const styles = StyleSheet.create({
-  container: {},
+  container: {
+    display: "flex",
+    flex: 1,
+  },
 });
 
 export default ContainerListaCompras;

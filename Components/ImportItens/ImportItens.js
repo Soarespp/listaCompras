@@ -7,11 +7,7 @@ import {
   Pressable,
   TextInput,
 } from "react-native";
-import {
-  defaultCategorias,
-  typesPages,
-  typesTab,
-} from "../../utils/constantes";
+import { typesPages, typesTab } from "../../utils/constantes";
 import { useListaComprasContext } from "../Context";
 import { getInfoCategoria } from "../../utils/imagensCategorias";
 
@@ -25,12 +21,17 @@ const ImportItens = () => {
   const geradorJSON = () => {
     var arrayItens = value.split("\n");
     var dadosUpdate = [];
+
     if (arrayItens) {
       arrayItens.map((itens) => {
         const arrayCategoria = itens.split(";");
+        console.log("arrayCategoria", arrayCategoria);
         if (arrayCategoria.length === 2) {
           var ArrayItem = arrayCategoria[0].split(":");
           const catItem = arrayCategoria[1].trim();
+
+          console.log("categoria array", catItem, getInfoCategoria(catItem));
+
           if (ArrayItem.length == 2) {
             let name = ArrayItem[0].trim();
             let qt = ArrayItem[1].trim();
@@ -47,7 +48,11 @@ const ImportItens = () => {
           if (ArrayItem[0].length > 0) {
             dadosUpdate = [
               ...dadosUpdate,
-              { name: ArrayItem[0], qt: 1, categoria: getInfoCategoria() },
+              {
+                name: ArrayItem[0],
+                qt: 1,
+                categoria: getInfoCategoria(catItem),
+              },
             ];
           }
           return;
@@ -83,7 +88,7 @@ const ImportItens = () => {
         style={{ height: showDetail ? 150 : 25 }}
         onPress={() => setShowDetail((old) => !old)}
       >
-        <Text style={{ fontSize: 18, paddingLeft: 8 }}>
+        <Text style={{ fontSize: 18, paddingLeft: 8, color: "grey" }}>
           {"Informações: \n * Listar cada produto em uma linha\n " +
             '* Para informar quantidade colocar um ":" apos o nome do produto e informar a quantidade \n' +
             '* Para informar categoria colocar um ";" e informar:  \n' +
@@ -130,7 +135,6 @@ const ImportItens = () => {
             height: "80%",
           }}
           value={value}
-          // inputContainerStyle={{ height: "100%" }}
           onChange={({ nativeEvent: { text } }) => setValue(text)}
         />
       </View>

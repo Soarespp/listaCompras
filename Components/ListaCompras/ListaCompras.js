@@ -29,15 +29,14 @@ const ListaCompras = ({ lista }) => {
           })}
         renderItem={(item) => <CardProduto item={item} />}
         numColumns={2}
+        style={{ paddingBottom: 110 }}
       />
     </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    marginBottom: 110,
-  },
+  container: {},
   item: {
     padding: 20,
     marginVertical: 8,

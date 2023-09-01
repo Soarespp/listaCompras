@@ -1,4 +1,4 @@
-import { useForm, Controller } from "react-hook-form";
+import { useEffect, useState } from "react";
 import {
   Button,
   FlatList,
@@ -16,7 +16,6 @@ import {
   getImageCategoria,
   getInfoCategoria,
 } from "../../utils/imagensCategorias";
-import { useEffect, useState } from "react";
 
 const INIT_PRODUTO = { name: "", qt: 1, categoria: "gr" };
 

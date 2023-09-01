@@ -15,7 +15,6 @@ export const ListaComprasProvider = ({ children }) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [tabPage, setTabPage] = useState(typesPages.pageHome);
   const [tabSelected, setTabSelected] = useState(typesTab.tabLista);
-  const [cadOpen, setCadOpen] = useState(false);
   const [filterItemLista, setFilterItemLista] = useState();
   const [filterCategoria, setFilterItemCategoria] = useState();
   const [produtoEdit, setProdutoEdit] = useState();
@@ -25,8 +24,6 @@ export const ListaComprasProvider = ({ children }) => {
       listaCompras.find((lista) => !lista.finalizada)?.itens || [];
     setDadosProdutosLista(valorChange);
   }, [listaCompras]);
-
-  const changeCadOpen = () => setCadOpen((oldvalue) => !oldvalue);
 
   const atualizarDadosLista = async (dados) => {
     setListaCompras(dados);
@@ -284,14 +281,11 @@ export const ListaComprasProvider = ({ children }) => {
     <ListaComprasContext.Provider
       value={{
         listaCompras,
-        cadOpen,
-        setListaCompras,
         menuOpen,
         tabPage,
         tabSelected,
         addItensListaCompras,
         onChangeItemValue,
-        changeCadOpen,
         getDadosStorage,
         changeMenuOpen,
         clearAllLista,
@@ -302,7 +296,6 @@ export const ListaComprasProvider = ({ children }) => {
         changeListaMercadoFinalizada,
         setListaMercadoFinalizada,
         clearAllItensLista,
-        atualizarDadosLista,
         excluirListaMercado,
         allFilters,
         dadosProdutosLista,

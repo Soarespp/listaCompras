@@ -1,5 +1,5 @@
-import { useEffect } from "react";
-import { Alert, Image, StyleSheet, Pressable, Text, View } from "react-native";
+import { Alert, Image, StyleSheet, Text, View } from "react-native";
+
 import { Card, CardBody } from "./CardProduto.style";
 import { getImageCategoria } from "../../../../utils/imagensCategorias";
 import Icon from "@expo/vector-icons/MaterialCommunityIcons";
@@ -134,14 +134,6 @@ const CardProduto = ({ item: { item } }) => {
 };
 
 const styles = StyleSheet.create({
-  body: {
-    borderWidth: 1,
-    backgroundColor: "red",
-    position: "relative",
-    borderRadius: 16,
-    marginTop: 60,
-    marginHorizontal: 6,
-  },
   containerImg: {
     width: "100%",
     position: "absolute",

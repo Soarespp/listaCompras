@@ -1,21 +1,21 @@
+import { StyleSheet, View } from "react-native";
+
 import ContainerHistorico from "../../Content/ContainerHistorico/ContainerHistorico";
 import ContainerListaCompras from "../../Content/ContainerListaCompras/ContainerListaCompras";
-import ContainerMenu from "../../Content/ContainerMenu";
-import Header from "../Header/Header";
-import ImportItens from "../ImportItens";
-import { useListaComprasContext } from "../Context";
-import { typesPages } from "../../utils/constantes";
-import ContainerPagamento from "../../Content/ContainerPagamento";
 import ContainerInfo from "../../Content/ContainerInfo";
-import { Text, StyleSheet, View, Pressable } from "react-native";
-import Footer from "../Footer/Footer";
+import { typesPages } from "../../utils/constantes";
 import ContentFilter from "../../Content/ContentFilter/ContentFilter";
 import ContainerCadastroItem from "../../Content/ContainerCadastroItem/ContainerCadastroItem";
+
+import Header from "../Header/Header";
+import Footer from "../Footer/Footer";
+import ImportItens from "../ImportItens";
 import StarMenu from "../StarMenu";
 
+import { useListaComprasContext } from "../Context";
+
 const ListaMercado = () => {
-  const { tabPage, menuOpen, setTabSelected, setTabPage } =
-    useListaComprasContext();
+  const { tabPage, setTabSelected, setTabPage } = useListaComprasContext();
   return (
     <View
       style={{

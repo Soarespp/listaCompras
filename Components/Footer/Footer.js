@@ -40,20 +40,9 @@ const Footer = ({ onChangePage, onChangeTab }) => {
     >
       <View
         style={{
-          backgroundColor: "#1b2223",
-          width: "100%",
-          height: 80,
-          position: "absolute",
-          zIndex: 2,
-          bottom: 0,
-        }}
-      ></View>
-      <View
-        style={{
           width: "100%",
           border: "1 solid #000",
-          height: 110,
-          position: "absolute",
+          height: 50,
           zIndex: 3,
           bottom: 0,
           display: "flex",
@@ -102,9 +91,10 @@ const styles = StyleSheet.create({
     overflow: "hidden",
     alignItems: "flex-end",
     zIndex: -9999,
+    paddingBottom: 12,
   },
   menuItem: {
-    height: 70,
+    height: 40,
     width: 40,
     margin: 6,
     borderRadius: 40,
@@ -113,11 +103,12 @@ const styles = StyleSheet.create({
   },
   menuItemSelect: {
     position: "relative",
-    backgroundColor: "#1b2223",
-    height: 110,
-    width: 100,
+    height: 50,
+    width: 50,
     padding: 6,
     borderRadius: 80,
+    borderWidth: 1,
+    borderColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
     textAlign: "center",
