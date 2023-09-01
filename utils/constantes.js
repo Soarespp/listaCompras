@@ -10,6 +10,7 @@ export const typesPages = {
   pageHome: "home",
   pagePagamento: "pagamento",
   pageInformacoes: "informacoes",
+  pageCadastroProduto: "carProduto",
 };
 
 export const defaultValues = {
@@ -28,3 +29,15 @@ export const defaultListaCompra = {
 };
 
 export const defaultListaCompras = [];
+
+export const defaultCategorias = [
+  { name: "Frios", id: "fr" },
+  { name: "Bebidas", id: "b" },
+  { name: "Carnes", id: "c" },
+  { name: "Frutas", id: "f" },
+  { name: "Verduras", id: "v" },
+  { name: "Limpeza", id: "l" },
+  { name: "Higiene", id: "h" },
+  { name: "Manutenção", id: "m" },
+  { name: "Genérico", id: "gr" },
+];

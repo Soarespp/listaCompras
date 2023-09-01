@@ -13,13 +13,11 @@ const ContainerHistorico = () => {
         style={{
           backgroundColor: "#e2e2e2",
           margin: 10,
-          height: "100%",
-          maxHeight: 600,
         }}
       >
         {listaCompras
           ?.filter((lista) => lista.finalizada)
-          .map((lista) => (
+          .map((lista, key) => (
             <View
               style={{
                 margin: 3,
@@ -27,12 +25,12 @@ const ContainerHistorico = () => {
                 flexDirection: "row",
                 justifyContent: "flex-end",
               }}
+              key={key}
             >
               <Text
                 style={{
                   fontSize: 15,
                   paddingTop: 12,
-                  borderCurve: 3,
                 }}
               >{`Data: ${new Date(
                 lista.dataLista
@@ -42,7 +40,6 @@ const ContainerHistorico = () => {
                   fontSize: 15,
                   paddingTop: 12,
                   paddingLeft: 6,
-                  borderCurve: 3,
                 }}
               >{`Valor: ${lista?.value || 0}`}</Text>
               <Text
@@ -50,9 +47,8 @@ const ContainerHistorico = () => {
                   fontSize: 15,
                   paddingTop: 12,
                   paddingLeft: 6,
-                  borderCurve: 3,
                 }}
-              >{`Itens: ${lista.itens.length}`}</Text>
+              >{`Itens: ${lista?.itens?.length}`}</Text>
               <View style={{ flexDirection: "row", paddingLeft: 6 }}>
                 <IconButton
                   icon={(props) => <Icon name="reload-alert" {...props} />}

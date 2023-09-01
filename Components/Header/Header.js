@@ -1,35 +1,23 @@
-import { AppBar, HStack, IconButton } from "@react-native-material/core";
-import Icon from "@expo/vector-icons/MaterialCommunityIcons";
-
-import { useListaComprasContext } from "../Context";
+import { Text, View } from "react-native";
 
 const Header = () => {
-  const { changeMenuOpen, changeCadOpen } = useListaComprasContext();
   return (
-    <AppBar
-      style={{ paddingTop: 40 }}
-      title="Lista Mercado"
-      centerTitle={true}
-      color="#009093"
-      tintColor="#f3d872"
-      leading={(props) => (
-        <IconButton
-          icon={(props) => (
-            <Icon name="menu" {...props} onPress={changeMenuOpen} />
-          )}
-          {...props}
-        />
-      )}
-      trailing={(props) => (
-        <HStack>
-          <IconButton
-            icon={(props) => <Icon name="plus" {...props} />}
-            {...props}
-            onPress={() => changeCadOpen()}
-          />
-        </HStack>
-      )}
-    />
+    <View
+      style={{
+        display: "flex",
+        flexDirection: "row",
+        paddingTop: 100,
+      }}
+    >
+      <View style={{ paddingLeft: 8, flex: 1 }}>
+        <Text style={{ fontSize: 32, fontWeight: 700, color: "#fff" }}>
+          Lista de Compras
+        </Text>
+        <Text style={{ color: "grey", fontSize: 24 }}>
+          Segue lista para compras...
+        </Text>
+      </View>
+    </View>
   );
 };
 

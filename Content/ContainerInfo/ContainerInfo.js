@@ -12,9 +12,7 @@ const ContainerInfo = () => {
         }}
       >
         <View style={{ backgroundColor: "#fff", margin: 6 }}>
-          <Text style={{ fontSize: 20, fontWeight: "800px" }}>
-            Lista Mercado v. 1.0.2
-          </Text>
+          <Text style={{ fontSize: 20 }}>Lista Mercado v. 2.0.0</Text>
           <Text style={{ fontSize: 16, paddingTop: 20 }}>
             E um app para ajudar na compra de mercado tendo a função de guardar
             historico e recuperar. Pode-se informar no final da compra o valor

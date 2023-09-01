@@ -1,5 +1,5 @@
 import styled from "styled-components/native";
-import { TouchableHighlight } from "react-native";
+import { TouchableHighlight, View } from "react-native";
 
 export const TabItem = styled(TouchableHighlight)(
   ({ tabSelected, tabTitle }) => {
@@ -12,3 +12,9 @@ export const TabItem = styled(TouchableHighlight)(
     };
   }
 );
+
+export const MenuItem = styled(View)(({ tabSelected, tabTitle }) => {
+  return {
+    backgroundColor: tabSelected === tabTitle ? "#cad4d9" : "white",
+  };
+});

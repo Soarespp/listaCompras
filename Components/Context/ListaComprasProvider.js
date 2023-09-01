@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import { AsyncStorage } from "react-native";
+import React, { useEffect, useState } from "react";
 import { mockListaCompras } from "../../mocks/mockListaCompras";
 import {
   defaultListaCompra,
@@ -8,22 +7,53 @@ import {
   typesTab,
 } from "../../utils/constantes";
 import { ListaComprasContext } from "./ListaComprasContext";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export const ListaComprasProvider = ({ children }) => {
   const [listaCompras, setListaCompras] = useState([]);
-  const [dadosLista, setDadosLista] = useState(mockListaCompras);
+  const [dadosProdutosLista, setDadosProdutosLista] = useState([]);
   const [menuOpen, setMenuOpen] = useState(false);
   const [tabPage, setTabPage] = useState(typesPages.pageHome);
   const [tabSelected, setTabSelected] = useState(typesTab.tabLista);
   const [cadOpen, setCadOpen] = useState(false);
+  const [filterItemLista, setFilterItemLista] = useState();
+  const [filterCategoria, setFilterItemCategoria] = useState();
+  const [produtoEdit, setProdutoEdit] = useState();
 
-  const changeDadosLista = (value) => setDadosLista(value);
+  useEffect(() => {
+    const valorChange =
+      listaCompras.find((lista) => !lista.finalizada)?.itens || [];
+    setDadosProdutosLista(valorChange);
+  }, [listaCompras]);
+
   const changeCadOpen = () => setCadOpen((oldvalue) => !oldvalue);
 
   const atualizarDadosLista = async (dados) => {
     setListaCompras(dados);
     const jsonDadosCache = JSON.stringify(dados);
     await AsyncStorage.setItem("listaDados", jsonDadosCache);
+  };
+
+  const updateItemListaCompras = async (value) => {
+    const itensLista = listaCompras.find((item) => !item.finalizada);
+
+    const cachItens = [
+      ...itensLista.itens.map((item) => {
+        if (item.id !== value.id) return item;
+
+        return value;
+      }),
+    ];
+
+    var cachListaCompras = [
+      ...listaCompras.filter((itemLC) => itemLC.finalizada),
+      {
+        ...listaCompras.find((itemLC) => !itemLC.finalizada),
+        itens: cachItens,
+      },
+    ];
+
+    atualizarDadosLista(cachListaCompras);
   };
 
   const addItemListaCompras = async (value) => {
@@ -174,6 +204,10 @@ export const ListaComprasProvider = ({ children }) => {
       },
     ];
 
+    if (!cacheLista) {
+      return;
+    }
+
     atualizarDadosLista(cacheLista);
   };
 
@@ -239,20 +273,25 @@ export const ListaComprasProvider = ({ children }) => {
     atualizarDadosLista(dadosCache);
   };
 
+  const allFilters = {
+    filterItemLista,
+    setFilterItemLista,
+    filterCategoria,
+    setFilterItemCategoria,
+  };
+
   return (
     <ListaComprasContext.Provider
       value={{
         listaCompras,
         cadOpen,
         setListaCompras,
-        dadosLista,
         menuOpen,
         tabPage,
         tabSelected,
         addItensListaCompras,
         onChangeItemValue,
         changeCadOpen,
-        changeDadosLista,
         getDadosStorage,
         changeMenuOpen,
         clearAllLista,
@@ -265,6 +304,11 @@ export const ListaComprasProvider = ({ children }) => {
         clearAllItensLista,
         atualizarDadosLista,
         excluirListaMercado,
+        allFilters,
+        dadosProdutosLista,
+        produtoEdit,
+        setProdutoEdit,
+        updateItemListaCompras,
       }}
     >
       {children}

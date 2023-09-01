@@ -6,7 +6,7 @@ import ListaMercado from "./Components/ListaMercado";
 
 export default function App() {
   return (
-    <View>
+    <View style={{ flex: 1 }}>
       <ListaComprasProvider>
         <ListaMercado />
         <StatusBar style="auto" />
